@@ -288,3 +288,28 @@ a.card:hover{border-color:var(--copper);box-shadow:none}
   background-size:calc(var(--c) + 3px) calc(var(--c) + 3px)!important;
   background-repeat:no-repeat!important;background-origin:border-box!important}
 .btn,.burger{--b:2px}.btn,.burger{background-size:calc(var(--c) + 4px) calc(var(--c) + 4px)!important}
+
+/* ===== Avis : carrousel horizontal avec flèches ===== */
+.car{position:relative}
+.rvtrack{display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px;margin:-2px;overscroll-behavior-x:contain}
+.rvtrack::-webkit-scrollbar{display:none}
+.rvtrack>*{flex:0 0 calc((100% - 2 * var(--gap)) / 3);min-width:0;scroll-snap-align:start}
+.car-b{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;padding:0;display:grid;place-items:center;border:0;background:var(--ink);color:var(--paper);cursor:pointer;--c:8px;
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c));transition:background-color .15s,opacity .15s}
+.car-b.prev{left:-20px}.car-b.next{right:-20px}
+.car-b:hover:not(:disabled){background:var(--copper);color:#fff}
+.car-b:disabled{opacity:.3;cursor:default}
+.car-b:focus-visible{outline:3px solid var(--water);outline-offset:-4px}
+.car-b .ic{width:22px;height:22px}
+.car.noscroll .car-b{display:none}
+.rvtrack:focus-visible{outline:3px solid var(--water);outline-offset:2px}
+@media (max-width:1000px){.rvtrack>*{flex-basis:calc((100% - var(--gap)) / 2)}}
+@media (max-width:760px){.rvtrack>*{flex-basis:82%}.car{display:grid;grid-template-columns:1fr 40px 40px;gap:12px 8px}.rvtrack{grid-column:1/-1}.car-b{position:static;transform:none;grid-row:2;width:40px;height:40px}.car-b.prev{grid-column:2}.car-b.next{grid-column:3}.car-b .ic{width:20px;height:20px}}
+
+/* cartes d'avis */
+.card .rvt{margin:8px 0}.card .rvm{margin:auto 0 0;padding-top:12px;font-size:.9rem}
+.card .rvt.clamp{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;overflow:hidden}
+.card.open .rvt.clamp{display:block;overflow:visible}
+.more{align-self:flex-start;margin:0 0 4px;padding:4px 0;border:0;background:none;color:var(--copper);font:600 .9rem Roboto,sans-serif;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.rvtrack.n1>*{flex-basis:min(100%,620px)}.rvtrack.n2>*{flex-basis:calc((100% - var(--gap)) / 2)}
+@media (max-width:760px){.rvtrack.n1>*,.rvtrack.n2>*{flex-basis:82%}.rvtrack.n1>*{flex-basis:100%}}
