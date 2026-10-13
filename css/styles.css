@@ -332,13 +332,14 @@ a.card:hover{border-color:var(--copper);box-shadow:none}
 .pin .lb.l{text-anchor:end}
 .pin:focus{outline:none}.pin:focus-visible .c{stroke:var(--water);stroke-width:4}
 .pin:not(.base):hover .c{transform:scale(1.25)}
-@media (max-width:1000px){.rm{grid-template-columns:1fr;grid-template-areas:"h" "l" "m"}}
+@media (max-width:1000px){.rm{grid-template-columns:1fr;grid-template-areas:"h" "l" "m";row-gap:0}.mapcol{margin-top:48px}}
 @media (max-width:760px){
  .mapm{display:block;margin:0 0 20px}
  .mapcol .map,.mapcol .mapcap{display:none}
  .mapz .lb,.mapz .pin .lb{opacity:1}
  .mapz text.lb{font-size:15px}.mapz .pin .n{font-size:16px}.mapz .pin.base .lb{font-size:14px!important}
  .mapz .pin.on .c{transform:scale(1.35)}
+ .mapz .pin.base .lb{transform:translateY(-22px)}
 }
 
 /* ===== Avis : date sur la ligne du nom, points de position ===== */
