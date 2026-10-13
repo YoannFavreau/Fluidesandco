@@ -36,7 +36,7 @@ Tous les arrondis ont été remplacés par des angles coupés (octogones pour le
 - Fiche Travaux.com : `TRAVAUX_URL`
 - Titres et descriptions de chaque page : objet `META`
 - Réalisations (titre, commune, texte, photo) : tableaux `R` et `LOC`
-- Avis Travaux.com : tableau `RV`
+- Avis Travaux.com : fichier `js/avis.js` (un bloc par avis, mode d'emploi en tête du fichier)
 - Certifications : tableau `CERTS` (logos à ajouter dans `assets/img/`)
 - Parcours : tableau `PARC`
 - Villes du bandeau : `MQ1` et `MQ2`
