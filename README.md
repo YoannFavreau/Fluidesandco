@@ -26,17 +26,13 @@ Chaque page est un dossier contenant un `index.html` : l'adresse s'affiche sans 
 
 Chaque fichier contient déjà son contenu (titre, description, textes, FAQ, fil d'Ariane, données structurées) : il est lisible sans JavaScript par les moteurs de recherche et les IA. Les polices ne dépendent plus de Google Fonts.
 
-## Angles coupés
-
-Tous les arrondis ont été remplacés par des angles coupés (octogones pour les repères de la carte). La taille de la coupe se règle avec la variable `--c` dans le bloc « Angles coupés » à la fin de `css/styles.css` (par exemple `.card{--c:14px}` ; `0px` donne un angle droit). Les ombres portées sont retirées des éléments coupés, car une coupe les rogne : la bordure et la couleur de fond les remplacent.
-
 ## Où modifier quoi (dans `js/app.js`)
 
 - Téléphone et email : constantes `TEL`, `TELH`, `MAIL` en haut du fichier
 - Fiche Travaux.com : `TRAVAUX_URL`
 - Titres et descriptions de chaque page : objet `META`
 - Réalisations (titre, commune, texte, photo) : tableaux `R` et `LOC`
-- Avis Travaux.com : fichier `js/avis.js` (un bloc par avis, mode d'emploi en tête du fichier)
+- Avis Travaux.com : tableau `RV`
 - Certifications : tableau `CERTS` (logos à ajouter dans `assets/img/`)
 - Parcours : tableau `PARC`
 - Villes du bandeau : `MQ1` et `MQ2`
