@@ -1,0 +1,12 @@
+{
+  "name": "fluides-and-co-build",
+  "private": true,
+  "type": "module",
+  "description": "Pré-rendu des pages du site Fluides & Co (optionnel, pour le référencement)",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}
