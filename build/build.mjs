@@ -65,6 +65,7 @@ export async function build(puppeteer, launchOptions, siteDir) {
       await page.goto(base + (dir ? dir + '/' : ''), { waitUntil: 'load' });
       await page.evaluate(() => document.fonts.ready);
       await new Promise((r) => setTimeout(r, 400));
+      await page.evaluate(() => { const b = document.getElementById('ck'); if (b) b.remove(); document.querySelectorAll('script[src*="googletagmanager"]').forEach((x) => x.remove()); });
       const html = await page.evaluate(() => '<!DOCTYPE html>\n' + document.documentElement.outerHTML + '\n');
       await page.close();
       return html;
