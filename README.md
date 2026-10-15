@@ -65,3 +65,23 @@ Le script recrée chaque `index.html` à partir de `build/shell.html` (l'en-têt
    Si le site est publié avant que l'adresse soit figée, ne changez plus la structure des dossiers ensuite, ou prévoyez des redirections.
 3. **À confirmer avec Maxime** : certifications (badges « À confirmer »), parcours (« À compléter »), communes réelles des chantiers, liste des villes du bandeau.
 4. **Licences des polices** : vérifier les conditions d'utilisation de Kripa et de Roboto pour un usage web.
+
+
+## Référencement (SEO) et IA (GEO) : réglages à faire une fois
+
+Ouvrir `build/site.config.json` et renseigner :
+
+```json
+{
+  "site": "https://www.votre-domaine.fr",
+  "facebook": "https://www.facebook.com/votre-page"
+}
+```
+
+Puis, depuis le dossier `build/` : `npm install` (la première fois) puis `npm run build`.
+
+Le build met alors à jour, sur toutes les pages : la balise canonique, `hreflang`, les images de partage (Facebook, LinkedIn, X), les données structurées schema.org (entreprise, services, pages, avis, FAQ, fil d'Ariane, liens `sameAs` vers Facebook et Travaux.com) et le pied de page (téléphone, e-mail, Facebook). Il recrée aussi `sitemap.xml` (avec la date), `robots.txt` (moteurs de recherche et assistants IA autorisés) et `llms.txt` (résumé du site pour les IA).
+
+Tant que `site` est vide, ces éléments restent en mode « à compléter ». Laisser `facebook` vide masque simplement le lien.
+
+Après la mise en ligne : déclarer le site dans Google Search Console (envoyer `sitemap.xml`), et vérifier la fiche Google Business Profile avec le même nom, adresse et téléphone que dans le pied de page.

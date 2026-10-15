@@ -1,7 +1,8 @@
 
 const TEL='06 77 49 23 84',TELH='tel:+33677492384',MAIL='fluidesandco44@gmail.com';
 const ROOT=document.body.dataset.root||'';
-const SITE='';/* ex. https://www.fluides-and-co.fr (sans / final) : active canonical et og:url */
+const FC=window.FC||{};/* réglages injectés par le build depuis build/site.config.json */
+const SITE=(FC.site||'').replace(/\/+$/,''),FB=FC.facebook||'';
 const TLOGO=ROOT+'assets/img/travaux-logo.svg';
 const TB=`<span class="tbadge"><img src="${TLOGO}" alt="Travaux.com" width="118" height="16"></span>`;
 const TRAVAUX_URL='https://www.travaux.com/professionnel/fluides-and-co';
@@ -56,8 +57,8 @@ const R=[
 ];
 const LOC={plomberie:['Rezé',-1.57,47.175],chauffage:['Pornic',-2.102,47.113],climatisation:['La Baule-Escoublac',-2.39,47.287],pro:['Nantes',-1.553,47.235]};
 R.forEach(r=>{r.img=IM[r.k];r.pos=POS[r.k];[r.lieu,r.lon,r.lat]=LOC[r.k]});
-const pic=(k,big)=>`<div class="ph pic${big?' big':''}" role="img" aria-label="${R.find(r=>r.k===k).alt}"><img src="${IM[k]}" alt="" style="object-position:${POS[k]}" loading="lazy"></div>`;
-const rc=(r,i,a)=>{const o=!a||i===0,n=i+1;return `<article class="rcard${o?' open':''}${a?' acc':''}" data-i="${i}">${a?`<button type="button" class="rh" aria-expanded="${o}"><span class="rt"><b>${r.t}</b><small>${r.lieu}</small></span><i></i></button>`:''}<div class="rb"><figure class="rimg">${a?`<span class="rnum" aria-hidden="true">${n}</span>`:''}<img src="${r.img}" alt="${r.alt}" loading="lazy" style="object-position:${r.pos}"></figure><div class="rinfo"><h3>${r.t}</h3><p class="rsec">${I_PIN}<span>${r.lieu}</span></p><p class="rdet">${r.d}</p>${r.dur?`<p class="rsec">Durée : ${r.dur}</p>`:''}${r.q?`<p class="rq">« ${r.q} »</p>`:''}</div></div></article>`};
+const pic=(k,big)=>`<div class="ph pic${big?' big':''}" role="img" aria-label="${R.find(r=>r.k===k).alt}"><img src="${IM[k]}" alt="" width="750" height="1000" decoding="async" style="object-position:${POS[k]}"${big?' fetchpriority="high"':' loading="lazy"'}></div>`;
+const rc=(r,i,a)=>{const o=!a||i===0,n=i+1;return `<article class="rcard${o?' open':''}${a?' acc':''}" data-i="${i}">${a?`<button type="button" class="rh" aria-expanded="${o}"><span class="rt"><b>${r.t}</b><small>${r.lieu}</small></span><i></i></button>`:''}<div class="rb"><figure class="rimg">${a?`<span class="rnum" aria-hidden="true">${n}</span>`:''}<img src="${r.img}" alt="${r.alt}" width="750" height="1000" loading="lazy" decoding="async" style="object-position:${r.pos}"></figure><div class="rinfo"><h3>${r.t}</h3><p class="rsec">${I_PIN}<span>${r.lieu}</span></p><p class="rdet">${r.d}</p>${r.dur?`<p class="rsec">Durée : ${r.dur}</p>`:''}${r.q?`<p class="rq">« ${r.q} »</p>`:''}</div></div></article>`};
 const GEN=()=>RV.find(r=>r.g)||RV[0];
 const CHL=SV('ic-ar','<path d="m15 18-6-6 6-6"/>'),CHR=SV('ic-ar','<path d="m9 18 6-6-6-6"/>');
 const stars5=n=>'★'.repeat(n)+'<span style="opacity:.3">'+'★'.repeat(5-n)+'</span>';
@@ -95,7 +96,7 @@ const bx=X(-1.78),by=Y(47.33);const pins=`<g class="pin base" tabindex="0" role=
 return `<svg class="map ${cls}" viewBox="${vb}" role="group" aria-label="Carte schématique de la Loire-Atlantique avec la localisation approximative des réalisations"><polygon class="dep" points="${MAPD.map(d=>X(d[0])+','+Y(d[1])).join(' ')}"/>${dots}${pins}</svg>`};
 const zone=()=>`<h2>Zone d’intervention</h2><p class="lead" style="margin-bottom:16px">Basé au Temple-de-Bretagne, j’interviens en Loire-Atlantique et alentours.</p><ul class="zl">${CITIES.map(c=>`<li>${c[0]}</li>`).join('')}</ul>${mapSvg('28 215 335 200','mapd')}<p class="mapcap">Carte schématique, localisations approximatives. <span class="dsk">Cliquez</span><span class="mob">Touchez</span> un numéro pour voir la réalisation.</p>`;
 function home(){return `
-<section><div class="wrap hero"><div><h1>Climatisation, plomberie, chauffage.</h1><p class="lead">Installation, entretien et dépannage pour particuliers, professionnels et tertiaire en Loire-Atlantique. Fiabilité, efficacité, durabilité.</p><div class="cta"><a class="btn cu" href="${TELH}">Appeler maintenant</a><a class="btn alt" href="${U('/contact')}">Demander un devis</a></div></div><div class="ph pic big portrait"><img src="${ART}" alt="Portrait de Maxime Contassot, artisan Fluides & Co" style="object-position:50% 28%"><a class="pchip" href="${U('/qui-suis-je')}">Qui suis-je ? →</a></div></div></section>
+<section><div class="wrap hero"><div><h1>Climatisation, plomberie, chauffage.</h1><p class="lead">Installation, entretien et dépannage pour particuliers, professionnels et tertiaire en Loire-Atlantique. Fiabilité, efficacité, durabilité.</p><div class="cta"><a class="btn cu" href="${TELH}">Appeler maintenant</a><a class="btn alt" href="${U('/contact')}">Demander un devis</a></div></div><div class="ph pic big portrait"><img src="${ART}" alt="Portrait de Maxime Contassot, artisan Fluides & Co" width="900" height="1125" decoding="async" fetchpriority="high" style="object-position:50% 28%"><a class="pchip" href="${U('/qui-suis-je')}">Qui suis-je ? →</a></div></div></section>
 <section style="padding-top:0"><div class="wrap"><a class="score mini" href="${TRAVAUX_URL}" target="_blank" rel="noopener noreferrer" aria-label="Note 4,9 sur 5 sur Travaux.com, voir la fiche (s’ouvre dans un nouvel onglet)"><b>4,9</b><div class="scs">${stars}${TB}</div><div class="sdesc">Conseil et expertise au service de votre confort et de vos besoins.</div><span class="mlk"><span class="dsk">Voir les avis sur Travaux.com</span><span class="mob">Avis</span>${I_EXT}</span></a></div></section>
 <section style="padding-top:0"><div class="wrap"><h2>Ce que je fais</h2><p class="lead" style="margin-bottom:24px">Choisissez votre besoin pour voir les détails.</p><p class="hint">Faites glisser pour découvrir →</p><div class="g g4 snap">${['plomberie','chauffage','climatisation','pro'].map(k=>`<a class="card" href="${U('/'+k)}">${pic(k)}<h3>${SERV[k].t}</h3><p>${SERV[k].sh}</p><span class="cl">En savoir plus →</span></a>`).join('')}</div></div></section>
 <section class="band"><div class="wrap"><h2>Mes prestations</h2><div class="g g4 pre">${PREST.map(p=>`<div class="card"><h3>${p[0]}</h3><p style="margin:0">${p[1]}</p></div>`).join('')}</div><div class="center"><a class="btn cu" href="${U('/contact')}">Me contacter</a></div></div></section>
@@ -136,7 +137,7 @@ ${steps('band')}
 ${avis(RV,'')}
 ${contactBlock()}`}
 function about(){return `
-<section><div class="wrap hero"><div><h1>Qui suis-je ?</h1><p class="lead">Mes valeurs : fiabilité, efficacité, durabilité.</p><p>Je m’appelle Maxime Contassot, artisan plombier, chauffagiste et climaticien au Temple-de-Bretagne. Mon métier, c’est de faire en sorte que chez vous, tout fonctionne : l’eau, le chauffage, la fraîcheur l’été. Que vous soyez particulier, professionnel ou gestionnaire d’un local, vous avez affaire à la même personne, du premier appel à la fin du chantier.</p><p>Je préfère vous conseiller la solution qui convient vraiment à votre situation plutôt que la plus compliquée, et vous laisser un chantier propre, dans un cadre transparent et agréable.</p><div class="cta"><a class="btn cu" href="${TELH}">Appeler le ${TEL}</a><a class="btn alt" href="${U('/contact')}">Me contacter</a></div></div><div class="ph pic big portrait"><img src="${ART}" alt="Portrait de Maxime Contassot, artisan Fluides & Co" style="object-position:50% 28%"><div class="pcap">${FLAG}<span><b>Maxime Contassot</b><small>Artisan en Loire-Atlantique</small></span></div></div></div></section>
+<section><div class="wrap hero"><div><h1>Qui suis-je ?</h1><p class="lead">Mes valeurs : fiabilité, efficacité, durabilité.</p><p>Je m’appelle Maxime Contassot, artisan plombier, chauffagiste et climaticien au Temple-de-Bretagne. Mon métier, c’est de faire en sorte que chez vous, tout fonctionne : l’eau, le chauffage, la fraîcheur l’été. Que vous soyez particulier, professionnel ou gestionnaire d’un local, vous avez affaire à la même personne, du premier appel à la fin du chantier.</p><p>Je préfère vous conseiller la solution qui convient vraiment à votre situation plutôt que la plus compliquée, et vous laisser un chantier propre, dans un cadre transparent et agréable.</p><div class="cta"><a class="btn cu" href="${TELH}">Appeler le ${TEL}</a><a class="btn alt" href="${U('/contact')}">Me contacter</a></div></div><div class="ph pic big portrait"><img src="${ART}" alt="Portrait de Maxime Contassot, artisan Fluides & Co" width="900" height="1125" decoding="async" fetchpriority="high" style="object-position:50% 28%"><div class="pcap">${FLAG}<span><b>Maxime Contassot</b><small>Artisan en Loire-Atlantique</small></span></div></div></div></section>
 <section class="band"><div class="wrap"><h2>Mes engagements envers vous</h2><div class="g g4 snap">${[['Fiabilité','Je fais ce que j’annonce, et je vous explique clairement ce que je vais faire avant de commencer.'],['Efficacité','Je cherche la solution adaptée à votre logement et à vos besoins, pas la plus compliquée.'],['Durabilité','Un travail soigné et de qualité, pensé pour durer, avec un entretien si vous le souhaitez.'],['Transparence','Un cadre transparent et agréable : vous savez où vous allez, de la première discussion à la fin du chantier.']].map(x=>`<div class="card"><h3>${x[0]}</h3><p style="margin:0">${x[1]}</p></div>`).join('')}</div></div></section>
 <section><div class="wrap"><h2>Mes certifications, ce qu’elles changent pour vous</h2><p class="lead" style="margin-bottom:24px">Ces labels sont des preuves de compétence reconnues. Voici ce qu’ils signifient concrètement. Vérifiez toujours les certifications d’un artisan : elles ont un numéro et se contrôlent.</p><div class="g g4 snap certs">${CERTS.map(c=>`<details class="card cert"><summary><div class="clogo" role="img" aria-label="Logo ${c.n}"><span>Logo ${c.n}</span></div><span class="badge">À confirmer</span><h3>${c.n}</h3><p class="cf">${c.f}</p><span class="more">Ce que ça signifie<i class="chev2"></i></span></summary><p class="cd">${c.d}</p></details>`).join('')}</div></div></section>
 <section class="band"><div class="wrap cols"><div><h2>Mon parcours</h2><p class="lead">Quelques repères pour savoir à qui vous confiez votre chantier.</p></div><ol class="tl">${PARC.map(x=>`<li><h3>${x[0]}</h3><p>${x[1]}</p>${x[2]?'<span class="badge">À compléter avec l’artisan</span>':''}</li>`).join('')}</ol></div></section>
@@ -176,6 +177,48 @@ const ld=document.createElement('script');ld.type='application/ld+json';ld.id='b
 ld.textContent=JSON.stringify({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:all.map(([n,h],i)=>{const it={'@type':'ListItem',position:i+1,name:n};if(SITE)it.item=SITE+'/'+(DIR[h]||'');return it})});
 document.head.appendChild(ld);
 if(!st)app.insertAdjacentHTML('afterbegin',`<div class="bc" role="navigation" aria-label="Fil d’Ariane"><div class="wrap"><ol>${all.map(([n,h],i)=>i<all.length-1?`<li><a href="${U(h)}">${n}</a></li>`:`<li aria-current="page">${n}</li>`).join('')}</ol></div></div>`)}
+
+/* ===== SEO / GEO : balises de partage + données structurées (schema.org) ===== */
+const OGI={home:'maxime-contassot.jpg',about:'maxime-contassot.jpg',plomberie:'realisation-plomberie.jpg',chauffage:'realisation-chauffage.jpg',climatisation:'realisation-climatisation.jpg',pro:'realisation-pro.jpg'};
+const SVC={plomberie:['Plomberie','Dépannage, installation et entretien de plomberie'],chauffage:['Chauffage','Installation, entretien, dépannage et désembouage de chauffage'],climatisation:['Climatisation','Installation, entretien et dépannage de climatisation'],pro:['Plomberie, chauffage et climatisation pour professionnels','Maintenance, installation et dépannage pour entreprises, commerces et locaux du tertiaire']};
+function seo(pg,p,t,d){
+ const url=SITE?SITE+'/'+(DIR[p]||''):'',idb=url||'',org=(SITE?SITE+'/':'')+'#entreprise';
+ const head=document.head,set=(sel,mk,val)=>{let e=head.querySelector(sel);if(!val){if(e)e.remove();return}if(!e){e=document.createElement('meta');mk(e);head.appendChild(e)}e.setAttribute('content',val)};
+ const nm=n=>e=>e.name=n,pr=n=>e=>e.setAttribute('property',n);
+ const img=SITE?SITE+'/assets/img/'+(OGI[pg]||'logo-fluides-co.png'):'';
+ set('meta[name="robots"]',nm('robots'),'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1');
+ set('meta[name="theme-color"]',nm('theme-color'),'#10302f');
+ set('meta[property="og:site_name"]',pr('og:site_name'),'Fluides & Co');
+ set('meta[property="og:image"]',pr('og:image'),img);
+ set('meta[name="twitter:card"]',nm('twitter:card'),'summary_large_image');
+ set('meta[name="twitter:title"]',nm('twitter:title'),t);set('meta[name="twitter:description"]',nm('twitter:description'),d);set('meta[name="twitter:image"]',nm('twitter:image'),img);
+ head.querySelectorAll('link[rel="alternate"][hreflang]').forEach(x=>x.remove());
+ if(url){['fr-FR','x-default'].forEach(h=>{const l=document.createElement('link');l.rel='alternate';l.hreflang=h;l.href=url;head.appendChild(l)})}
+ const cities=[...CITIES.map(c=>c[0]==='Métropole nantaise'?'Nantes':c[0]),'Rezé','Saint-Herblain','Orvault','Le Pouliguen'].filter((v,i,a)=>a.indexOf(v)===i);
+ const ORG={'@type':['Plumber','HVACBusiness'],'@id':org,name:'Fluides & Co',alternateName:'Fluides and Co',description:'Plombier, chauffagiste et climaticien en Loire-Atlantique : installation, entretien et dépannage pour particuliers, professionnels et tertiaire.',telephone:'+33677492384',email:MAIL,
+  address:{'@type':'PostalAddress',addressLocality:'Le Temple-de-Bretagne',postalCode:'44360',addressRegion:'Pays de la Loire',addressCountry:'FR'},
+  areaServed:[{'@type':'AdministrativeArea',name:'Loire-Atlantique'},...cities.map(n=>({'@type':'City',name:n}))],
+  identifier:{'@type':'PropertyValue',propertyID:'SIRET',value:'93441073900015'},
+  founder:{'@type':'Person',name:'Maxime Contassot',jobTitle:'Artisan plombier, chauffagiste et climaticien'},
+  knowsAbout:['Plomberie','Dépannage de plomberie','Recherche de fuite','Chauffage','Pompe à chaleur','Désembouage','Entretien de chaudière','Climatisation','Maintenance tertiaire'],
+  hasOfferCatalog:{'@type':'OfferCatalog',name:'Prestations',itemListElement:['Plomberie','Chauffage','Climatisation'].map(n=>({'@type':'Offer',itemOffered:{'@type':'Service',name:n}}))},
+  aggregateRating:{'@type':'AggregateRating',ratingValue:'4.9',bestRating:'5',worstRating:'1',reviewCount:String(RV.length)},
+  sameAs:[FB,TRAVAUX_URL].filter(Boolean)};
+ if(SITE){ORG.url=SITE+'/';ORG.logo={'@type':'ImageObject',url:SITE+'/assets/img/logo-fluides-co.png'};ORG.image=SITE+'/assets/img/'+(OGI.home)}
+ const G=[ORG];
+ if(SITE)G.push({'@type':'WebSite','@id':SITE+'/#website',url:SITE+'/',name:'Fluides & Co',inLanguage:'fr-FR',publisher:{'@id':org}});
+ const wp={'@type':pg==='contact'?'ContactPage':pg==='about'?'AboutPage':'WebPage','@id':(idb||'')+'#webpage',name:t,description:d,inLanguage:'fr-FR',about:{'@id':org}};
+ if(url){wp.url=url;wp.isPartOf={'@id':SITE+'/#website'}}
+ if(img)wp.primaryImageOfPage={'@type':'ImageObject',url:img};
+ G.push(wp);
+ if(SVC[pg]){const [n,ds]=SVC[pg];G.push({'@type':'Service','@id':(idb||'')+'#service',name:n,serviceType:n,description:ds+' en Loire-Atlantique.',provider:{'@id':org},areaServed:{'@type':'AdministrativeArea',name:'Loire-Atlantique'},audience:{'@type':'Audience',audienceType:pg==='pro'?'Professionnels et tertiaire':'Particuliers'}})}
+ let ld=document.getElementById('orgld');if(!ld){ld=document.createElement('script');ld.type='application/ld+json';ld.id='orgld';head.appendChild(ld)}
+ ld.textContent=JSON.stringify({'@context':'https://schema.org','@graph':G});
+ /* ancien bloc statique remplacé par celui-ci */
+ head.querySelectorAll('script[type="application/ld+json"]:not([id])').forEach(x=>x.remove());
+ /* pied de page : coordonnées identiques partout (NAP) */
+ const fx=document.getElementById('ftx');if(fx)fx.innerHTML=` · <a href="${TELH}">${TEL}</a> · <a href="mailto:${MAIL}">${MAIL}</a>`+(FB?` · <a href="${FB}" target="_blank" rel="me noopener noreferrer">Facebook</a>`:'')+` · <a href="${TRAVAUX_URL}" target="_blank" rel="noopener noreferrer">Travaux.com</a>`;
+}
 function route(){const app=document.getElementById('app');
 const pg=document.body.dataset.page||'home',p=PATH[pg]||'/',st=app.hasAttribute('data-static');
 if(!st)app.innerHTML=pg==='home'?home():pg==='contact'?contact():pg==='particuliers'?particuliers():pg==='about'?about():pg==='pro'?proPage():page(pg);
@@ -187,6 +230,7 @@ const old=document.getElementById('faqld');if(FAQS[pg])faqLD(pg);else if(old)old
 if(!st&&META[pg]){const[t,d]=META[pg];document.title=t;const sm=(sel,mk,val)=>{let e=document.head.querySelector(sel);if(!e){e=document.createElement('meta');mk(e);document.head.appendChild(e)}e.setAttribute('content',val)};
 sm('meta[name="description"]',e=>e.name='description',d);sm('meta[property="og:title"]',e=>e.setAttribute('property','og:title'),t);sm('meta[property="og:description"]',e=>e.setAttribute('property','og:description'),d);sm('meta[property="og:type"]',e=>e.setAttribute('property','og:type'),'website');sm('meta[property="og:locale"]',e=>e.setAttribute('property','og:locale'),'fr_FR')}
 crumbs(pg,app,st);
+seo(pg,p,(META[pg]||[''])[0],(META[pg]||['',''])[1]);
 if(SITE){let l=document.head.querySelector('link[rel="canonical"]');if(!l){l=document.createElement('link');l.rel='canonical';document.head.appendChild(l)}l.href=SITE+'/'+(DIR[p]||'');let o=document.head.querySelector('meta[property="og:url"]');if(!o){o=document.createElement('meta');o.setAttribute('property','og:url');document.head.appendChild(o)}o.setAttribute('content',l.href)}
 if(location.protocol==='file:')document.querySelectorAll('a[href]').forEach(a=>{const h=a.getAttribute('href');if(h&&/(^|\/)$/.test(h)&&!/^(https?:|tel:|mailto:)/.test(h))a.setAttribute('href',h+'index.html')});
 wire();icons();carousel()}

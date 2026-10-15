@@ -2,5 +2,20 @@ User-agent: *
 Allow: /
 Disallow: /build/
 
-# À COMPLÉTER : remplacer VOTRE-DOMAINE.fr par l'adresse réelle du site
-Sitemap: https://www.VOTRE-DOMAINE.fr/sitemap.xml
+# Moteurs de recherche et assistants IA : accès autorisé au contenu public
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://fluidesandco.com/sitemap.xml

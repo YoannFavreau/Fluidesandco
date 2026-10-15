@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- À COMPLÉTER : remplacer https://www.VOTRE-DOMAINE.fr par l'adresse réelle du site (9 lignes à changer : Ctrl+H) -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.VOTRE-DOMAINE.fr/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/particuliers/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/particuliers/plomberie/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/particuliers/chauffage/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/particuliers/climatisation/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/professionnels/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/qui-suis-je/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/contact/</loc></url>
-  <url><loc>https://www.VOTRE-DOMAINE.fr/mentions-legales/</loc></url>
+  <url><loc>https://fluidesandco.com/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/particuliers/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/particuliers/plomberie/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/particuliers/chauffage/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/particuliers/climatisation/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/professionnels/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/qui-suis-je/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/contact/</loc><lastmod>2026-10-15</lastmod></url>
+  <url><loc>https://fluidesandco.com/mentions-legales/</loc><lastmod>2026-10-15</lastmod></url>
 </urlset>
